@@ -27,20 +27,14 @@ def start(message: telebot.types.Message):
     user_id = message.from_user.id
     bot.send_message(
         user_id,
-        "Привет! Я бот для озвучивания текста. Напиши /tts, и я озвучу твоё сообщение. А если отправишь /stt, то я распознаю твой голос!",
+        "Привет! Я твой бот-помощник. Ты можешь общаться со мной голосовыми сообщениями, или текстом.",
     )
 
 
-@bot.message_handler(commands=["tts"])
-def tts_handler(message: telebot.types.Message):
-    user_id = message.from_user.id
-    bot.send_message(user_id, "Отправь следующим сообщеним текст, чтобы я его озвучил!")
-
-
-@bot.message_handler(commands=["stt"])
-def stt_handler(message: telebot.types.Message):
-    user_id = message.from_user.id
-    bot.send_message(user_id, "Отправь голосовое сообщение, чтобы я его распознал!")
+@bot.message_handler(commands=["debug"])
+def debug(msg: telebot.types.Message) -> None:
+    with open("logs.txt", "rb") as f:
+        bot.send_document(msg.chat.id, f)
 
 
 @bot.message_handler(content_types=["text"])
@@ -146,13 +140,6 @@ def handle_voice(message: telebot.types.Message):
         bot.send_message(
             user_id, "Не получилось ответить. Попробуй записать другое сообщение"
         )
-
-
-@bot.message_handler(commands=["debug"])
-def debug(msg: telebot.types.Message) -> None:
-    with open("logs.txt", "rb") as f:
-        bot.send_document(msg.chat.id, f)
-
 
 if __name__ == "__main__":
     bot.infinity_polling()
