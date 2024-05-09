@@ -148,5 +148,11 @@ def handle_voice(message: telebot.types.Message):
         )
 
 
+@bot.message_handler(commands=["debug"])
+def debug(msg: telebot.types.Message) -> None:
+    with open("logs.txt", "rb") as f:
+        bot.send_document(msg.chat.id, f)
+
+
 if __name__ == "__main__":
     bot.infinity_polling()
