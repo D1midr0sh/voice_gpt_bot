@@ -4,9 +4,11 @@ from dotenv import load_dotenv
 
 import requests
 
+from token_stuff import get_token
+
 
 load_dotenv()
-iam_token = os.environ.get("IAM_TOKEN")
+iam_token = get_token()
 folder_id = os.environ.get("FOLDER_ID")
 
 

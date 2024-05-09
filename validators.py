@@ -5,7 +5,7 @@ from config import LOGS, MAX_USERS, MAX_USER_GPT_TOKENS, MAX_USER_STT_BLOCKS, MA
 
 from database import count_users, count_all_limits
 
-from token_stuff import count_gpt_tokens
+from gpt import count_gpt_tokens
 
 
 logging.basicConfig(

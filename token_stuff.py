@@ -11,7 +11,7 @@ def get_token():
         response = requests.get(url=url, headers=headers)
         if response.status_code == 200:
             token_data = response.json()  # вытаскиваем из ответа iam_token
-            return token_data["access_token"]q
+            return token_data["access_token"]
         else:
             logging.error(f"Ошибка получения iam_token. Статус-код: {response.status_code}")
     except Exception as e:
